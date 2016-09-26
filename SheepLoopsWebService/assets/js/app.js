@@ -1,5 +1,4 @@
 ﻿mostrarProductos();
-
 function mostrarProductos() {
     var url = "api/producto";
     $.getJSON(url)
@@ -58,12 +57,12 @@ function registrarUsuario() {
                 data: objetoJSON,
                 datatype: 'json',
                 success: function () {
-                    swal("Registrado Correctamente");
+                    swal("Registrado Correctamente","Te estaremos informando de nuevos productos","success");
                     $('#email').val('');
                 }
             }).fail(
                 function (xhr, txt, err) {
-                    swal("No Registrado", "El usuario ya existe", "error");
+                    swal("No Registrado", "El email ya existe", "error");
                 }
             );
         } else {
@@ -71,6 +70,6 @@ function registrarUsuario() {
         }
         
     } else {
-        swal("Mensaje", "Porfavor ingrese email", "error");
+        swal("Mensaje", "Porfavor ingrese un email", "error");
     }    
 }
