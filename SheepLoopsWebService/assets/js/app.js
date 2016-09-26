@@ -44,23 +44,33 @@ function mostrarProductos() {
 }
 function registrarUsuario() {
     var email = $('#email').val();
-    var cliente = {
-        emailcliente: email
-    };
-    var objetoJSON = JSON.stringify(cliente);
-    $.ajax({
-        url: 'api/cliente',
-        type: 'POST',
-        contentType: 'application/json;charset=utf-8',
-        data: objetoJSON,
-        datatype: 'json',
-        success: function () {
-            swal("Registrado Correctamente");
-            $('#email').val('');
+    var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    if (email !== '') {
+        if (emailRegex.test(email)) {
+            var cliente = {
+                emailcliente: email
+            };
+            var objetoJSON = JSON.stringify(cliente);
+            $.ajax({
+                url: 'api/cliente',
+                type: 'POST',
+                contentType: 'application/json;charset=utf-8',
+                data: objetoJSON,
+                datatype: 'json',
+                success: function () {
+                    swal("Registrado Correctamente");
+                    $('#email').val('');
+                }
+            }).fail(
+                function (xhr, txt, err) {
+                    swal("No Registrado", "El usuario ya existe", "error");
+                }
+            );
+        } else {
+            swal("Mensaje", "Porfavor ingrese un email valido", "error");
         }
-    }).fail(
-        function (xhr,txt,err) {
-            swal("No Registrado", "El usuario ya existe", "error");
-        }
-    );
+        
+    } else {
+        swal("Mensaje", "Porfavor ingrese email", "error");
+    }    
 }
