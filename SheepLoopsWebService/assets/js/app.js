@@ -42,3 +42,25 @@ function mostrarProductos() {
     //}
     //);
 }
+function registrarUsuario() {
+    var email = $('#email').val();
+    var cliente = {
+        emailcliente: email
+    };
+    var objetoJSON = JSON.stringify(cliente);
+    $.ajax({
+        url: 'api/cliente',
+        type: 'POST',
+        contentType: 'application/json;charset=utf-8',
+        data: objetoJSON,
+        datatype: 'json',
+        success: function () {
+            swal("Registrado Correctamente");
+            $('#email').val('');
+        }
+    }).fail(
+        function (xhr,txt,err) {
+            swal("No Registrado", "El usuario ya existe", "error");
+        }
+    );
+}

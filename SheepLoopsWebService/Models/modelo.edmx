@@ -4,7 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sheeploopsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="sheeploopsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="codigocliente" />
+          </Key>
+          <Property Name="codigocliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emailcliente" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
         <EntityType Name="producto">
           <Key>
             <PropertyRef Name="codigoproducto" />
@@ -18,10 +25,10 @@
           <Property Name="activoproducto" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="sheeploopsModelStoreContainer">
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sheeploopsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -39,7 +46,15 @@
         </EntityType>
         <EntityContainer Name="sheeploopsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="producto" EntityType="Self.producto" />
+          <EntitySet Name="cliente" EntityType="sheeploopsModel.cliente" />
         </EntityContainer>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="codigocliente" />
+          </Key>
+          <Property Name="codigocliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emailcliente" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -56,6 +71,14 @@
                 <ScalarProperty Name="precioproducto" ColumnName="precioproducto" />
                 <ScalarProperty Name="cantidadproducto" ColumnName="cantidadproducto" />
                 <ScalarProperty Name="activoproducto" ColumnName="activoproducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="sheeploopsModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="emailcliente" ColumnName="emailcliente" />
+                <ScalarProperty Name="codigocliente" ColumnName="codigocliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

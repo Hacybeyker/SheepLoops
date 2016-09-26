@@ -26,5 +26,6 @@ namespace SheepLoopsWebService.Models
         }
     
         public virtual DbSet<producto> producto { get; set; }
+        public virtual DbSet<cliente> cliente { get; set; }
     }
 }

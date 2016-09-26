@@ -130,9 +130,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\clienteController.cs" />
     <Compile Include="Controllers\productoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cliente.cs">
+      <DependentUpon>modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\modelo.Context.cs">
       <AutoGen>True</AutoGen>

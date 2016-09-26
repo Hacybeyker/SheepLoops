@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="052966c459d041b0b27c4ba2067911ab" Name="Diagram1">
         <EntityTypeShape EntityType="sheeploopsModel.producto" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sheeploopsModel.cliente" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
