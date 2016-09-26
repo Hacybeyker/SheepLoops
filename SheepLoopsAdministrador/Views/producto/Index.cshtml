@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SheepLoopsAdministrador.Models.producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Imagen
+        </th>
+        <th>
+            Descripción
+        </th>
+        <th>
+            Precio
+        </th>
+        <th>
+            Cantidad
+        </th>
+        <th>
+            Activo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreproducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagenproducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcionproducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precioproducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidadproducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.activoproducto)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Edit", new { id=item.codigoproducto }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.codigoproducto }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.codigoproducto })
+        </td>
+    </tr>
+}
+
+</table>
